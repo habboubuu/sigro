@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="./style.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <title>SEGRO - Digital Signature</title>
+</head>
+<body>
+  <nav class="relative p-3 px-10 flex bg-white justify-between items-center border-b border-gray-300">
+        <a href="#" id="logo" >
+        <img src="../assets/logo-black.png" alt="segro-logo" class="max-w-30 max-h-30 object-cover"/>
+        </a>
+        <div id="nav-menu" class="hidden md:flex gap-10">
+            <a href="#" class="text-xl hover:text-primary transition  duration-300">Home</a>
+            <a href="#" class="text-xl hover:text-primary transition  duration-300">About</a>
+            <a href="#" class="text-xl hover:text-primary transition  duration-300">Services</a>
+            <a href="#" class="text-xl hover:text-primary transition  duration-300">Contact</a>
+        </div>
+        <a href="#" class="hidden md:block border border-secondary py-2 px-4 rounded-md hover:border-third hover:text-primary transition duration-300">Get Started
+        <i class="fa-solid fa-arrow-right"></i>
+        </a>
+        <button onclick="handleMenu()" class="md:hidden">
+            <i id="iconNav" class="fa-solid fa-bars text-black  text-2xl cursor-pointer"></i>
+        </button>
+        <!-- mobile nav -->
+        <div id="navMobile" class="hidden">
+            <div class="flex flex-col gap-2.5 px-1 pb-5">
+                <a href="#" class="text-xl hover:text-primary transition  duration-300 hover:bg-gray-100 p-2 rounded-xs">Home</a>
+                <a href="#" class="text-xl hover:text-primary transition  duration-300 hover:bg-gray-100 p-2 rounded-xs">About</a>
+                <a href="#" class="text-xl hover:text-primary transition  duration-300 hover:bg-gray-100 p-2 rounded-xs">Services</a>
+                <a href="#" class="text-xl hover:text-primary transition  duration-300 hover:bg-gray-100 p-2 rounded-xs">Contact</a>
+            </div>
+            <div class="px-2.5 mt-2 pt-5 border-t border-gray-200">
+                <a href="#" class="block w-fit mt-3 border border-secondary py-2 px-4 rounded-md hover:border-third hover:text-primary transition duration-300">Get Started
+                    <i class="fa-solid fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </nav>
+  <!-- MAIN CONTENT -->
+  <div class="pt-10 flex justify-center items-center h-100 w-full">
+    <div class="text-center">
+      <h1 class="text-center text-3xl pb-2 font-bold">Upload and sign files</h1>
+      <input type="file" class="p-3 mt-4 border cursor-pointer w-50 md:w-100 pb-3" id="fileInput">
+      <button onclick="signFile()" class="border bg-blue-400 p-3 mt-4 pb-3 w-40">Sign the file</button>
+      <textarea id="signature" rows="4" cols="40" style="display: block;" class="w-90 m-4 outline-none"></textarea>
+      <h1 class="text-center text-3xl pb-2 font-bold">Signature verification</h1>
+      <input type="file" id="verifyFileInput" class="p-3 mt-4 border cursor-pointer w-50 md:w-100 pb-3">
+      <button onclick="verifyFile()" class="border bg-blue-400 p-3 mt-4 pb-3 w-40">Check signature</button>
+      <p id="verifyResult" class="pt-6"></p>
+    </div>
+  </div>
+  
+
+  <script>
+    let mobileNav = document.getElementById("navMobile");
+    let closeIcone = document.getElementById("iconNav");
+
+    function handleMenu(){
+        mobileNav.classList.toggle("nav-mobile-close")
+        closeIcone.classList.toggle("fa-xmark")
+    }
+
+    async function signFile() {
+      const file = document.getElementById("fileInput").files[0];
+      const formData = new FormData();
+      formData.append("file", file);
+
+      const res = await fetch("http://localhost:3000/sign-file", {
+        method: "POST",
+        body: formData
+      });
+
+      const data = await res.json();
+      document.getElementById("signature").value = data.signature;
+    }
+
+    async function verifyFile() {
+      const file = document.getElementById("verifyFileInput").files[0];
+      const signature = document.getElementById("signature").value;
+
+      const formData = new FormData();
+      formData.append("file", file);
+      formData.append("signature", signature);
+
+      const res = await fetch("http://localhost:3000/verify-file", {
+        method: "POST",
+        body: formData
+      });
+
+      const data = await res.json();
+      document.getElementById("verifyResult").innerText = data.valid
+        ? "✔ Signature is correct"
+        : "❌ Invalid signature";
+    }
+  </script>
+</body>
+</html>

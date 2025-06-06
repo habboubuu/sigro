@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="./style.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <title>SEGRO - Hash</title>
+</head>
+<body>
+    <!--------------- NAVBAR ---------------->
+    <nav class="relative p-3 px-10 flex bg-white justify-between items-center border-b border-gray-300">
+        <a href="#" id="logo" >
+        <img src="../assets/logo-black.png" alt="segro-logo" class="max-w-30 max-h-30 object-cover"/>
+        </a>
+        <div id="nav-menu" class="hidden md:flex gap-10">
+            <a href="#" class="text-xl hover:text-primary transition  duration-300">Home</a>
+            <a href="#" class="text-xl hover:text-primary transition  duration-300">About</a>
+            <a href="#" class="text-xl hover:text-primary transition  duration-300">Services</a>
+            <a href="#" class="text-xl hover:text-primary transition  duration-300">Contact</a>
+        </div>
+        <a href="#" class="hidden md:block border border-secondary py-2 px-4 rounded-md hover:border-third hover:text-primary transition duration-300">Get Started
+        <i class="fa-solid fa-arrow-right"></i>
+        </a>
+        <button onclick="handleMenu()" class="md:hidden">
+            <i id="iconNav" class="fa-solid fa-bars text-black  text-2xl cursor-pointer"></i>
+        </button>
+        <!-- mobile nav -->
+        <div id="navMobile" class="hidden">
+            <div class="flex flex-col gap-2.5 px-1 pb-5">
+                <a href="#" class="text-xl hover:text-primary transition  duration-300 hover:bg-gray-100 p-2 rounded-xs">Home</a>
+                <a href="#" class="text-xl hover:text-primary transition  duration-300 hover:bg-gray-100 p-2 rounded-xs">About</a>
+                <a href="#" class="text-xl hover:text-primary transition  duration-300 hover:bg-gray-100 p-2 rounded-xs">Services</a>
+                <a href="#" class="text-xl hover:text-primary transition  duration-300 hover:bg-gray-100 p-2 rounded-xs">Contact</a>
+            </div>
+            <div class="px-2.5 mt-2 pt-5 border-t border-gray-200">
+                <a href="#" class="block w-fit mt-3 border border-secondary py-2 px-4 rounded-md hover:border-third hover:text-primary transition duration-300">Login
+                    <i class="fa-solid fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+
+    
+
+    <main class="pt-6 lg:flex gap-4 justify-center ">
+        <div class="p-4 text-center ">
+            <h1 class="text-3xl font-medium tracking-widest text-blue-400">HASH TEXT</h1>
+            <div class="flex flex-col gap-4">
+                <textarea class="p-3 outline-none border mt-4" rows="1" cols="35" id="textInput"></textarea>
+                <button class="border px-2 bg-blue-400 cursor-pointer" onclick="hashText()">Hash Text</button>
+                <pre id="resultHashText" class="border max-w-full whitespace-pre-wrap break-words h-30 text-wrap text-xs"></pre>
+            </div>
+        </div>
+
+        <div class="p-4 text-center">
+            <h1 class="text-3xl font-medium tracking-widest text-blue-400">HASH FILE</h1>
+            <div class="flex flex-col gap-4">
+                <input type="file" class="p-3 mt-4 border cursor-pointer" id="fileInput"/>
+                <button class="border px-2 bg-blue-400 cursor-pointer" onclick="hashFile()">Hash File</button>
+                <pre id="resultHashFile" class="border max-w-full whitespace-pre-wrap break-words h-30 text-wrap text-xs"></pre>
+            </div>
+        </div>
+    </main>
+
+
+
+
+
+
+
+
+    <div class="h-115"></div>
+    <!-- FOOTER -->
+    <footer>
+        <div id="footer" class="bg-footer px-3 py-3 flex items-center justify-center gap-10">
+          <img src="../assets/logo-w.png" class="w-10  md:w-25"/>
+          <h4 class="text-xs md:text-xl" style="color: #ecebeb;">&copy;	2025 <span class="hover:text-primary transition duration-200 cursor-pointer">Houssam Habboub </span>All Right Reserved.</h4>
+        </div>
+      </footer>
+    <!-- JavaScript Link -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+    <script src="./hash.js"></script>
+</body>
+</html>

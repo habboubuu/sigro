@@ -1,0 +1,55 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+@import "tailwindcss";
+
+@theme {
+    --font-primary: "Inter", sans-serif;
+
+    --breakpoint-*: initial;
+    --breakpoint-sm: 480px;
+    --breakpoint-md: 768px;
+    --breakpoint-lg: 976px;
+
+    /* COLOR */
+    --color-primary: #006de8;
+    --color-secondary: #b1b1b1;
+    --color-third: #777777;
+    --color-four: #b0c4f5;
+    --color-icon: #1e46a8;
+    --color-input: #c8c8c8;
+    --color-footer: #282738;
+}
+
+:root {
+    --font-heading: 'Sansation', sans-serif;
+    --font-body: 'Roboto', sans-serif;
+}
+
+body{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var(--font-primary);
+}
+
+/* --- NAVBAR ---- */
+.li-nav:hover{
+    color: var(--color-primary);
+}
+
+.nav-mobile-close{
+    padding: 10px;
+    height: 80vh;
+    width: 100%;
+    display: block;
+    z-index: 99;
+    background-color: white;
+    position: absolute;
+    top: 70px;
+    left: 0;
+}
+
+
+
+/* -- HERO SECTION -- */
+
+

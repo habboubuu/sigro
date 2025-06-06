@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="./style.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <title>SEGRO - siteCheck</title>
+    
+    
+</head>
+<body>
+    <!--------------- NAVBAR ---------------->
+    <nav class="relative p-3 px-10 flex bg-white justify-between items-center border-b border-gray-300">
+        <a href="#" id="logo" >
+        <img src="../assets/logo-black.png" alt="segro-logo" class="max-w-30 max-h-30 object-cover"/>
+        </a>
+        <div id="nav-menu" class="hidden md:flex gap-10">
+            <a href="#" class="text-xl hover:text-primary transition  duration-300">Home</a>
+            <a href="#" class="text-xl hover:text-primary transition  duration-300">About</a>
+            <a href="#" class="text-xl hover:text-primary transition  duration-300">Services</a>
+            <a href="#" class="text-xl hover:text-primary transition  duration-300">Contact</a>
+        </div>
+        <a href="#" class="hidden md:block border border-secondary py-2 px-4 rounded-md hover:border-third hover:text-primary transition duration-300">Login
+        <i class="fa-solid fa-arrow-right"></i>
+        </a>
+        <button onclick="handleMenu()" class="md:hidden">
+            <i id="iconNav" class="fa-solid fa-bars text-black  text-2xl cursor-pointer"></i>
+        </button>
+        <!-- mobile nav -->
+        <div id="navMobile" class="hidden">
+            <div class="flex flex-col gap-2.5 px-1 pb-5">
+                <a href="#" class="text-xl hover:text-primary transition  duration-300 hover:bg-gray-100 p-2 rounded-xs">Home</a>
+                <a href="#" class="text-xl hover:text-primary transition  duration-300 hover:bg-gray-100 p-2 rounded-xs">About</a>
+                <a href="#" class="text-xl hover:text-primary transition  duration-300 hover:bg-gray-100 p-2 rounded-xs">Services</a>
+                <a href="#" class="text-xl hover:text-primary transition  duration-300 hover:bg-gray-100 p-2 rounded-xs">Contact</a>
+            </div>
+            <div class="px-2.5 mt-2 pt-5 border-t border-gray-200">
+                <a href="#" class="block w-fit mt-3 border border-secondary py-2 px-4 rounded-md hover:border-third hover:text-primary transition duration-300">Get Started
+                    <i class="fa-solid fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </nav>
+    <!--  MAIN CONTENT -->
+    <div class="pt-15 flex justify-center h-120 w-full ">
+        <div class="w-100">
+            <h1 class="text-center text-3xl pb-2 font-bold">Website security check</h1>
+            <div class="flex flex-col justify-center items-center">
+                <label for="url">Enter the website link</label>
+                <input type="url" id="url" class="border border-gray-500 outline-none p-2.5 mt-2 mb-2 w-90 md:w-100" placeholder="https://example.com" required>
+                <button id="check-btn" class="border border-black p-1.5 bg-blue-400 w-90 md:w-100">Site check</button>
+            </div>
+            
+            
+            
+            <div class="loading" id="loading" style="display: none;">
+                <div class="spinner"></div>
+                <p>Site being checked...</p>
+            </div>
+
+            <div id="result" class="hidden p-6 rounded-xl mt-6 shadow-md ">
+                <h2 class="pt-2.5 pb-2.5 text-xl">Test results: </h2>
+                <div class="p-5 bg-gradient-to-r from-blue-100 to-green-100">
+                    <div class="result-item" id="url-info"></div>
+                    <div class="result-item" id="ip-info"></div>
+                    <div class="result-item" id="safety-info"></div>
+                    <div class="result-item" id="threats-info"></div>
+                    <div class="result-item" id="last-checked"></div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    
+
+    <script src="./siteChek.js"></script>
+</body>
+</html>
